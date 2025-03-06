@@ -161,7 +161,7 @@ function calculateMoveDamage(attacker, move, defender) {
 function chooseMove(attacker, defender) {
   console.log(attacker.name);
   let moveOption = prompt(
-    `Choose ${attacker.name}'s Option:\n 1: Attack\n 2: Run`
+    `Choose ${attacker.name}'s Option:\n 1: Attack\n Any: Run`
   );
   if (moveOption === "1") {
     while (true) {
