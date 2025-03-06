@@ -138,15 +138,24 @@ console.log(firstPokemon);
 function calculateMoveDamage(attacker, move, defender) {
   let pokemonType = attacker.type;
   let damage = move.damage;
-
+  let totalDamage = damage;
   if (pokemonType === move.type) {
-    damage *= stabDamage;
+    let stab = damage * stabDamage;
+    totalDamage += stab;
   }
 
   if (move.type === defender.weakness) {
-    damage *= typeAdvantage;
+    let typeEffective = damage * typeAdvantage;
+    totalDamage += typeEffective;
+    console.log(`${move.name} is very effective to ${defender.name}`);
   }
-  return damage * attacker.attack;
+
+  if (move.type === defender.strength) {
+    let notEffective = damage / typeAdvantage;
+    totalDamage -= notEffective;
+    console.log(`${move.name} is not very effective to ${defender.name}`);
+  }
+  return totalDamage * attacker.attack;
 }
 
 function chooseMove(attacker, defender) {
@@ -197,10 +206,16 @@ try {
       if (pokemonMove !== 0) {
         let minusDamage = pokemonMove / secondPokemon.defense;
         secondPokemonHp -= minusDamage;
+        console.log(`${secondPokemon.name}'s HP: ${secondPokemonHp}`);
+
         let message =
-          "Pokemon has " + (secondPokemonHp > 0 ? "survived" : "fainted");
+          `${secondPokemon.name} has ` +
+          (secondPokemonHp > 0 ? "survived" : "fainted");
         console.log(message);
-        console.log(secondPokemonHp);
+        if (secondPokemonHp <= 0) {
+          declareWinner(firstPokemon);
+          hasWinner = true;
+        }
       } else {
         console.log(`${firstPokemon.name} has run away from the battle.`);
         firstPokemonHp -= 500;
@@ -212,17 +227,23 @@ try {
       if (pokemonMove !== 0) {
         let minusDamage = pokemonMove / firstPokemon.defense;
         firstPokemonHp -= minusDamage;
+        console.log(`${firstPokemon.name}'s HP: ${firstPokemonHp}`);
+
         let message =
-          "Pokemon has " + (firstPokemonHp > 0 ? "survived" : "fainted");
+          `${firstPokemon.name} has ` +
+          (firstPokemonHp > 0 ? "survived" : "fainted");
         console.log(message);
-        console.log(firstPokemonHp);
+
+        if (firstPokemonHp <= 0) {
+          declareWinner(secondPokemon);
+          hasWinner = true;
+        }
       } else {
         console.log(`${secondPokemon.name} has run away from the battle.`);
-        secondPokemonHp -= 500;
+        declareWinner(firstPokemon);
+        hasWinner = true;
       }
     }
-    console.log(`First Pokemon HP: ${firstPokemonHp}`);
-    console.log(`Second Pokemon HP: ${secondPokemonHp}`);
 
     if (firstPokemonHp <= 0) {
       declareWinner(secondPokemon);
