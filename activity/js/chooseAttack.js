@@ -174,7 +174,7 @@ function chooseMove(attacker, defender) {
 
           let damage = calculateMoveDamage(
             attacker,
-            attacker.moves[moveNumber],
+            attacker.moves[moveNumber - 1],
             defender
           );
           return damage;
