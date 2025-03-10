@@ -1,0 +1,6 @@
+.choosePokemon {
+  display: block;
+}
+.selectedPokemon {
+  display: none;
+}

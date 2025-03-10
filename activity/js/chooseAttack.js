@@ -33,13 +33,13 @@ let hydroPump = {
 let waterGun = {
   name: "Water Gun",
   type: "Water",
-  damage: 50,
+  damage: 70,
 };
 
 let scratch = {
   name: "Scratch",
   type: "Normal",
-  damage: 40,
+  damage: 50,
 };
 
 let venusaur = {
@@ -151,7 +151,7 @@ function calculateMoveDamage(attacker, move, defender) {
   }
 
   if (move.type === defender.strength) {
-    let notEffective = damage / typeAdvantage;
+    let notEffective = damage * typeAdvantage;
     totalDamage -= notEffective;
     console.log(`${move.name} is not very effective to ${defender.name}`);
   }
