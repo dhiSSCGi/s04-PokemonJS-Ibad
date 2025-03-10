@@ -6,9 +6,9 @@ let petalDance = {
   damage: 80,
 };
 
-let vineWhip = {
-  name: "Vine Whip",
-  type: "Grass",
+let tackle = {
+  name: "Tackle",
+  type: "Normal",
   damage: 65,
 };
 
@@ -18,9 +18,9 @@ let flamethrower = {
   damage: 80,
 };
 
-let ember = {
-  name: "Ember",
-  type: "Fire",
+let slash = {
+  name: "Slash",
+  type: "Normal",
   damage: 65,
 };
 
@@ -30,9 +30,9 @@ let hydroPump = {
   damage: 80,
 };
 
-let waterGun = {
-  name: "Water Gun",
-  type: "Water",
+let skullBash = {
+  name: "Skull Bash",
+  type: "Normal",
   damage: 65,
 };
 
@@ -50,7 +50,7 @@ let venusaur = {
   defense: 100,
   weakness: "Fire",
   strength: "Water",
-  moves: [petalDance, vineWhip, scratch],
+  moves: [petalDance, tackle, scratch],
 };
 
 let charizard = {
@@ -61,7 +61,7 @@ let charizard = {
   defense: 80,
   weakness: "Water",
   strength: "Grass",
-  moves: [flamethrower, ember, scratch],
+  moves: [flamethrower, slash, scratch],
 };
 
 let blastoise = {
@@ -72,7 +72,7 @@ let blastoise = {
   defense: 90,
   weakness: "Grass",
   strength: "Fire",
-  moves: [hydroPump, waterGun, scratch],
+  moves: [hydroPump, skullBash, scratch],
 };
 let firstPokemon = {};
 let secondPokemon = {};
@@ -140,19 +140,16 @@ function calculateMoveDamage(attacker, move, defender) {
   let damage = move.damage;
   let totalDamage = damage;
   if (pokemonType === move.type) {
-    let stab = damage * stabDamage;
-    totalDamage += stab;
+    totalDamage *= stabDamage;
   }
 
   if (move.type === defender.weakness) {
-    let typeEffective = damage * typeAdvantage;
-    totalDamage += typeEffective;
+    totalDamage *= typeAdvantage;
     console.log(`${move.name} is very effective to ${defender.name}`);
   }
 
   if (move.type === defender.strength) {
-    let notEffective = damage * typeAdvantage;
-    totalDamage -= notEffective;
+    totalDamage /= typeAdvantage;
     console.log(`${move.name} is not very effective to ${defender.name}`);
   }
   return totalDamage * attacker.attack;
