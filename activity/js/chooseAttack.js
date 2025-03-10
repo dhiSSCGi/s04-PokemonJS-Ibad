@@ -3,37 +3,37 @@ console.log("Pokemon Battle");
 let petalDance = {
   name: "Petal Dance",
   type: "Grass",
-  damage: 90,
+  damage: 80,
 };
 
 let vineWhip = {
   name: "Vine Whip",
   type: "Grass",
-  damage: 50,
+  damage: 65,
 };
 
 let flamethrower = {
   name: "Flamethrower",
   type: "Fire",
-  damage: 90,
+  damage: 80,
 };
 
 let ember = {
   name: "Ember",
   type: "Fire",
-  damage: 50,
+  damage: 65,
 };
 
 let hydroPump = {
   name: "Hydro Pump",
   type: "Water",
-  damage: 90,
+  damage: 80,
 };
 
 let waterGun = {
   name: "Water Gun",
   type: "Water",
-  damage: 70,
+  damage: 65,
 };
 
 let scratch = {
